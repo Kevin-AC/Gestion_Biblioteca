@@ -49,6 +49,7 @@ public class Biblioteca {
         usuarios.add(usuario);
     }
 
-
-
+    public String getNombre() {
+        return nombre;
+    }
 }
