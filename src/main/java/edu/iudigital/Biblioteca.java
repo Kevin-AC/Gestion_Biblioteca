@@ -9,11 +9,14 @@ public class Biblioteca {
     private String nombre;
     private List<Libro> catalogo;
     private List<Usuario> usuarios;
+    private List<Prestamo>prestamos;
+
 
     private Biblioteca(String nombre) {
         this.nombre = nombre;
         this.catalogo = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+        this.prestamos = new ArrayList<>();
     }
 
     public static Biblioteca getInstance(String nombre){
@@ -31,6 +34,17 @@ public class Biblioteca {
         return catalogo.stream().filter(libro -> libro.getTitulo().equalsIgnoreCase(titulo))
                 .collect(Collectors.toList());
     }
+    public List<Usuario>buscarUsuarioPorNombre(String nombre){
+        return usuarios.stream().filter(usuario -> usuario.getNombreCompleto().equalsIgnoreCase(nombre))
+                .collect(Collectors.toList());
+    }
+    public List<Prestamo>getPrestamos(){
+        return prestamos;
+    }
+    public void agregarPrestamo(Prestamo prestamo){
+        prestamos.add(prestamo);
+    }
+
     public void agregarUsuario(Usuario usuario){
         usuarios.add(usuario);
     }
