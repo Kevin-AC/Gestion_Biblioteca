@@ -1,4 +1,4 @@
-package edu.iudigital;
+package Modelo;
 
 public class Libro {
     protected String titulo;

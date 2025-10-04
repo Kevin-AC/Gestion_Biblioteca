@@ -1,6 +1,6 @@
-package edu.iudigital;
+package Modelo;
 
-public class LibroElectronico extends Libro{
+public class LibroElectronico extends Libro {
     private String formatoLibro;
     private String url;
 

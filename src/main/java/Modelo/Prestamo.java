@@ -1,6 +1,4 @@
-package edu.iudigital;
-
-import com.sun.source.doctree.RawTextTree;
+package Modelo;
 
 public class Prestamo {
     private Libro libro;

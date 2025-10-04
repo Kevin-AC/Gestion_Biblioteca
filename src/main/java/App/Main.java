@@ -1,4 +1,9 @@
-package edu.iudigital;
+package App;
+
+import Modelo.Biblioteca;
+import Modelo.Libro;
+import Modelo.Prestamo;
+import Modelo.Usuario;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
