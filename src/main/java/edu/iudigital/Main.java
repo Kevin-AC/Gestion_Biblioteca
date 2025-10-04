@@ -36,7 +36,7 @@ public class Main {
         }
 
     }
-    public void mostarMenu(){
+    public static void mostarMenu(){
         System.out.println("Bienvenido a la biblioteca ----");
         System.out.println("1. biblioteca");
         System.out.println("2. usuarios");
