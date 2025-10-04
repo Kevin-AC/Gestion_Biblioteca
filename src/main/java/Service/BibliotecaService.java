@@ -71,12 +71,7 @@ public class BibliotecaService {
     public static void prestarLibro() {
         System.out.println("Ingrese el Titulo del Libro a Prestar");
         String titulo = scanner.nextLine();
-        System.out.println("Ingrese el Nombre del Usuario");
-        String nombre = scanner.nextLine();
-        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
-            System.out.println("Error: El nombre no puede contener números.");
-            return;
-        }
+        String nombre = validarNombre();
         System.out.println("Ingrese la Fecha de Prestamo");
         String fechaPrestamo = scanner.nextLine();
         System.out.println("Ingrese la Fecha de Devolucion");
