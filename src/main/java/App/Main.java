@@ -30,6 +30,9 @@ public class Main {
                         System.out.println("Lista libros");
                         break;
                     case 5:
+                        System.out.println("Devolver libro");
+                        break;
+                    case 6:
                         service.listarPrestamos();
                         break;
                     case 9:
@@ -53,11 +56,8 @@ public class Main {
         System.out.println("2. Crear libro");
         System.out.println("3. Prestar libro");
         System.out.println("4. Lista de libros");
-        System.out.println("5. lista de prestamos");
+        System.out.println("5. Devolver libro");
+        System.out.println("6. Lista de prestamos");
         System.out.println("9. salir");
     }
-
-
-
-
 }
