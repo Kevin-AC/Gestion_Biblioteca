@@ -1,16 +1,7 @@
 package edu.iudigital;
 
-import javax.xml.transform.Source;
-import java.net.SecureCacheResponse;
-import java.net.SocketOption;
-import java.util.DoubleSummaryStatistics;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.stream.Stream;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Biblioteca biblioteca = Biblioteca.getInstance("Biblioteca Central");
@@ -56,7 +47,7 @@ public class Main {
 
 
     public static void mostarMenu(){
-        System.out.println("Bienvenido a la biblioteca ----");
+        System.out.println("Bienvenido a la biblioteca "+ biblioteca.getNombre());
         System.out.println("1. Crear usuario");
         System.out.println("2. Crear libro");
         System.out.println("3. Prestar libro");
@@ -65,16 +56,21 @@ public class Main {
         System.out.println("9. salir");
     }
     public static void crearUsuario(){
-        System.out.println("Ingrese el nombre de Usuario");
-        String nombre = scanner.nextLine();
-        System.out.println("Ingrese la Cedula");
-        String cedula = scanner.nextLine();
-        System.out.println("Ingrese el Correo");
-        String correo = scanner.nextLine();
-        System.out.println("Ingrerse el Telefono");
-        String telefono = scanner.nextLine();
-        Usuario usuario = new Usuario(nombre,cedula,correo,telefono);
-        biblioteca.agregarUsuario(usuario);
+
+            System.out.println("Ingrese el nombre de Usuario");
+            String nombre = scanner.nextLine();
+            if (nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
+                System.out.println("Error: El nombre no puede contener números.");
+                return;
+            }
+            System.out.println("Ingrese la Cedula");
+            String cedula = scanner.nextLine();
+            System.out.println("Ingrese el Correo");
+            String correo = scanner.nextLine();
+            System.out.println("Ingrerse el Telefono");
+            String telefono = scanner.nextLine();
+            Usuario usuario = new Usuario(nombre,cedula,correo,telefono);
+            biblioteca.agregarUsuario(usuario);
 
     }
     public static void crearLibro(){
