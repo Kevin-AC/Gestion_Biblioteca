@@ -6,18 +6,17 @@ public class Libro {
     protected String isbn;
     protected String editorial;
     protected String anioPublicacion;
-    protected double precio;
     protected String genero;
 
 
 
-     public Libro (String titulo, String autor, String isbn, String editorial, String anioPublicacion, double precio, String genero){
+     public Libro (String titulo, String autor, String isbn, String editorial, String anioPublicacion, String genero){
          this.titulo = titulo;
          this.autor = autor;
          this.isbn = isbn;
          this.editorial = editorial;
          this.anioPublicacion = anioPublicacion;
-         this.precio = precio;
+
          this.genero = genero;
      }
 
@@ -61,13 +60,6 @@ public class Libro {
         this.anioPublicacion = anioPublicacion;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
 
     public String getGenero() {
         return genero;
@@ -85,7 +77,6 @@ public class Libro {
                  ", isbn='" + isbn + '\'' +
                  ", editorial='" + editorial + '\'' +
                  ", añoPublicacion=" + anioPublicacion +
-                 ", precio=" + precio +
                  ", genero='" + genero + '\'';
 
     }

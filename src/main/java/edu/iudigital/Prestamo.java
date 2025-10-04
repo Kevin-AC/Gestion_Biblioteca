@@ -53,7 +53,7 @@ public class Prestamo {
     public String toString() {
         return "Prestamo{" +
                 "libro=" + libro.getTitulo() +
-                ", usuario=" + usuario.getNombre() +
+                ", usuario=" + usuario.getNombreCompleto() +
                 ", fechaPrestamo=" + fechaPrestamo +
                 ", devuelto=" + devuelto +
                 '}';
