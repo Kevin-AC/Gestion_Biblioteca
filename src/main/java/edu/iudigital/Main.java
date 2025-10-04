@@ -94,6 +94,10 @@ public class Main {
         String titulo = scanner.nextLine();
         System.out.println("Ingrese el Nombre del Usuario");
         String nombre = scanner.nextLine();
+        if (nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
+            System.out.println("Error: El nombre no puede contener números.");
+            return;
+        }
         System.out.println("Ingrese la Fecha de Prestamo");
         String fechaPrestamo = scanner.nextLine();
         System.out.println("Ingrese la Fecha de Devolucion");
