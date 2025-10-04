@@ -1,6 +1,7 @@
 package edu.iudigital;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Biblioteca {
     private String nombre;
@@ -11,6 +12,20 @@ public class Biblioteca {
         this.nombre = nombre;
         this.usuarios = usuarios;
         this.catalogo = catalogo;
+    }
+
+    public void agregarLibro(Libro libro) {
+        catalogo.add(libro);
+    }
+    public List<Libro> buscarPorTitulo(String titulo){
+        return catalogo.stream().filter(libro -> libro.getTitulo().equalsIgnoreCase(titulo))
+                .collect(Collectors.toList());
+
+
+    }
+    public void agregarUsuario(Usuario usuario){
+        usuarios.add(usuario);
+
     }
 
 
