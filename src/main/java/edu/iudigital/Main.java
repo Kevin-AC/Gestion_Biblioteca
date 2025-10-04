@@ -56,10 +56,9 @@ public class Main {
         System.out.println("9. salir");
     }
     public static void crearUsuario(){
-
             System.out.println("Ingrese el nombre de Usuario");
             String nombre = scanner.nextLine();
-            if (nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
+            if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
                 System.out.println("Error: El nombre no puede contener números.");
                 return;
             }
@@ -94,7 +93,7 @@ public class Main {
         String titulo = scanner.nextLine();
         System.out.println("Ingrese el Nombre del Usuario");
         String nombre = scanner.nextLine();
-        if (nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
             System.out.println("Error: El nombre no puede contener números.");
             return;
         }
