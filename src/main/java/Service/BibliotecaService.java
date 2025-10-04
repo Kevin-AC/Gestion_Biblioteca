@@ -15,20 +15,40 @@ public class BibliotecaService {
         this.scanner = scanner;
     }
     public static void crearUsuario(){
-        System.out.println("Ingrese el nombre de Usuario");
-        String nombre = scanner.nextLine();
-        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+")) {
-            System.out.println("Error: El nombre no puede contener números.");
-            return;
+        try {
+
+            String nombre = validarNombre();
+
+            String cedula;
+            while (true) {
+                System.out.println("Ingrese su Cedula");
+                cedula = scanner.nextLine();
+                if (!cedula.matches("[0-9]+")) {
+                    System.out.println("Error: La cedula solo puede contener numeros. Intente de nuevo.");
+                } else {
+                    break;
+                }
+            }
+            System.out.println("Ingrese el Correo");
+            String correo = scanner.nextLine();
+            String telefono;
+            while (true) {
+                System.out.println("Ingrese el Telefono");
+                telefono = scanner.nextLine();
+                if (!telefono.matches("[0-9]+")) {
+                    System.out.println("Error: El telefono solo puede contener numeros. Intente de nuevo.");
+                } else {
+                    break;
+                }
+            }
+
+            Usuario usuario = new Usuario(nombre,cedula,correo,telefono);
+            biblioteca.agregarUsuario(usuario);
+
+        }catch (Exception e){
+            System.out.println("Error: "+ e.getMessage());
+
         }
-        System.out.println("Ingrese la Cedula");
-        String cedula = scanner.nextLine();
-        System.out.println("Ingrese el Correo");
-        String correo = scanner.nextLine();
-        System.out.println("Ingrerse el Telefono");
-        String telefono = scanner.nextLine();
-        Usuario usuario = new Usuario(nombre,cedula,correo,telefono);
-        biblioteca.agregarUsuario(usuario);
 
     }
 
@@ -80,6 +100,20 @@ public class BibliotecaService {
     public static void listarPrestamos(){
         System.out.println("Lista de Prestamos");
         biblioteca.getPrestamos().forEach(System.out::println);
+    }
+
+    public static String validarNombre(){
+        String nombre;
+        while (true) {
+            System.out.println("Ingrese el nombre de Usuario");
+            nombre = scanner.nextLine();
+            if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+                System.out.println("Error: El nombre solo puede contener letras y espacios. Intente de nuevo.");
+            } else {
+                break;
+            }
+        }
+        return nombre;
     }
 
 }
