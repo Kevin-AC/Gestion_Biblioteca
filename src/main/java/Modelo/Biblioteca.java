@@ -52,4 +52,18 @@ public class Biblioteca {
     public String getNombre() {
         return nombre;
     }
+
+    public void mostrarLibros(){
+        if (catalogo.isEmpty()){
+            System.out.println("No hay libros disponibles");
+        }else {
+            System.out.println("\nLista de libros");
+            for(int i = 0; i < catalogo.size(); i++){
+                System.out.println((i+1)+ "."+catalogo.get(i));
+            }
+        }
+
+    }
+
+
 }

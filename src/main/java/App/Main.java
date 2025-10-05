@@ -1,6 +1,7 @@
 package App;
 
 import Modelo.Biblioteca;
+import Modelo.Libro;
 import Service.BibliotecaService;
 
 import java.util.InputMismatchException;
@@ -10,6 +11,8 @@ public class Main {
     static Biblioteca biblioteca = Biblioteca.getInstance("Biblioteca Central");
     static BibliotecaService service = new BibliotecaService(biblioteca,scanner);
     public static void main(String[] args) {
+        biblioteca.agregarLibro(new Libro("Fudamentos de java","Herbert Schildt","9788426723987","Marcombo","2011","Educativo"));
+        biblioteca.agregarLibro(new Libro("Alas de sangre","Rebecca Yarros","97860739909876","Planeta","2023","Fantasia"));
         int opcion =0;
         while (opcion != 9){
             mostarMenu();
@@ -28,6 +31,7 @@ public class Main {
                         break;
                     case 4:
                         System.out.println("Lista libros");
+                        biblioteca.mostrarLibros();
                         break;
                     case 5:
                         System.out.println("Devolver libro");
