@@ -38,8 +38,8 @@ public class Biblioteca {
         return usuarios.stream().filter(usuario -> usuario.getNombreCompleto().equalsIgnoreCase(nombre))
                 .collect(Collectors.toList());
     }
-    public List<Prestamo>getPrestamos(){
-        return prestamos;
+    public List<Prestamo>getPrestamosActivos(){
+        return prestamos.stream().filter(prestamo -> !prestamo.isDevuelto()).collect(Collectors.toList());
     }
     public void agregarPrestamo(Prestamo prestamo){
         prestamos.add(prestamo);
