@@ -2,6 +2,7 @@ package App;
 
 import Modelo.Biblioteca;
 import Modelo.Libro;
+import Modelo.LibroElectronico;
 import Service.BibliotecaService;
 
 import java.util.InputMismatchException;
@@ -37,6 +38,7 @@ public class Main {
     public static void datosDeprueba(){
         biblioteca.agregarLibro(new Libro("Fudamentos de java","Herbert Schildt","9788426723987","Marcombo","2011","Educativo"));
         biblioteca.agregarLibro(new Libro("Alas de sangre","Rebecca Yarros","97860739909876","Planeta","2023","Fantasia"));
+        biblioteca.agregarLibro(new LibroElectronico("Alas de hierro","Rebecca Yarros","987654321","Planeta","2024","Fantasia","Epub",4.5,"http:bibliotecacentral/libroselectronicos/descarga"));
     }
     public static int leerOpcion(){
         int opcion = 0;
