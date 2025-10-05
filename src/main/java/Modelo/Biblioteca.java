@@ -19,12 +19,13 @@ public class Biblioteca {
         this.prestamos = new ArrayList<>();
     }
 
-    public static Biblioteca getInstance(String nombre){
-        if(instancia == null){
+    public static Biblioteca getInstance(String nombre) {
+        if (instancia == null) {
             instancia = new Biblioteca(nombre);
         }
         return instancia;
     }
+
 
 
     public void agregarLibro(Libro libro) {

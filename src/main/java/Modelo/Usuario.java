@@ -26,7 +26,7 @@ public class Usuario {
         for (Prestamo prestamo : librosPrestados){
             if(!prestamo.isDevuelto() && prestamo.getLibro().getTitulo().equalsIgnoreCase(titulo)){
                 prestamo.marcarDevuelto();
-                System.out.println("Libro devuelto con exito");
+
                  return prestamo;
             }
         }

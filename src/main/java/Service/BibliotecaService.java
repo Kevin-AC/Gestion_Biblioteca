@@ -126,11 +126,7 @@ public class BibliotecaService {
             return;
         }
         System.out.println("Prestamo devuelto con exito");
-
-
-
-
-
+        prestamo.marcarDevuelto();
 
     }
 
