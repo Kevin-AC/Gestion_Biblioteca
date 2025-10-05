@@ -8,7 +8,7 @@ public class Usuario {
     private String cedula;
     private String correo;
     private String telefono;
-    private List<Libro> librosPrestados;
+    private List<Prestamo> librosPrestados;
 
 
     public Usuario(String nombreCompleto, String cedula, String correo, String telefono) {
@@ -19,15 +19,22 @@ public class Usuario {
         this.librosPrestados = new ArrayList<>();
     }
 
-        public void prestarLibro (Libro libro){
-            librosPrestados.add(libro);
+    public void prestarLibro (Prestamo prestamo){
+        librosPrestados.add(prestamo);
+    }
+    public Prestamo devolverLibro (String titulo){
+        for (Prestamo prestamo : librosPrestados){
+            if(!prestamo.isDevuelto() && prestamo.getLibro().getTitulo().equalsIgnoreCase(titulo)){
+                prestamo.marcarDevuelto();
+                System.out.println("Libro devuelto con exito");
+                 return prestamo;
+            }
         }
-
-        public void devolverLibro (Libro libro){
-        librosPrestados.remove(libro);
-        } public List<Libro> getLibrosPrestados(){
-             return librosPrestados;
-         }
+        return null;
+    }
+    public List<Prestamo> getPrestamos() {
+        return librosPrestados;
+    }
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -61,9 +68,7 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public void setLibrosPrestados(List<Libro> librosPrestados) {
-        this.librosPrestados = librosPrestados;
-    }
+
 
     @Override
      public String toString(){
