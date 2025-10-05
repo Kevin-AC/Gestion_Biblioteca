@@ -1,52 +1,43 @@
 package Modelo;
 
+import java.time.LocalDate;
+
 public class Prestamo {
     private Libro libro;
     private Usuario usuario;
-    private String fechaPrestamo;
-    private String fechaDevolucion;
+    private LocalDate fechaPrestamo;
+    private LocalDate fechaDevolucion;
     private boolean devuelto;
 
-    public Prestamo(Libro libro, Usuario usuario, String fechaPrestamo, String fechaDevolucion) {
+    public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo) {
         this.libro = libro;
         this.usuario = usuario;
         this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = fechaDevolucion;
         this.devuelto = false;
     }
 
     //getters and setters
-
     public Libro getLibro() {
         return libro;
-    }
-    public void setLibro(Libro libro) {
-        this.libro = libro;
     }
     public Usuario getUsuario() {
         return usuario;
     }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    public String getFechaPrestamo() {
+    public LocalDate getFechaPrestamo() {
         return fechaPrestamo;
     }
-    public void setFechaPrestamo(String fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
-    }
-    public String getFechaDevolucion() {
+    public LocalDate getFechaDevolucion() {
         return fechaDevolucion;
-    }
-    public void setFechaDevolucion(String fechaDevolucion) {
-        this.fechaDevolucion = fechaDevolucion;
     }
     public boolean isDevuelto() {
         return devuelto;
     }
-    public void setDevuelto(boolean devuelto) {
-        this.devuelto = devuelto;
+    public void marcarDevuelto(){
+        this.devuelto=true;
+        this.fechaDevolucion = LocalDate.now();
     }
+
+
     @Override
     public String toString() {
         return "Préstado:\n" +
