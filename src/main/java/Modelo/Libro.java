@@ -81,7 +81,7 @@ public class Libro {
                  "\nEditorial    : " + editorial +
                  "\nAño Publicación : " + anioPublicacion +
                  "\nGénero       : " + genero +
-                 "\n----------------------";
+                 "\n-";
 
     }
 }
