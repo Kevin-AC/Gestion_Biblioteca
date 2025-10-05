@@ -30,11 +30,10 @@ public class Main {
                         service.prestarLibro();
                         break;
                     case 4:
-                        System.out.println("Lista libros");
                         biblioteca.mostrarLibros();
                         break;
                     case 5:
-                        System.out.println("Devolver libro");
+                        service.devolverLibro();
                         break;
                     case 6:
                         service.listarPrestamos();
