@@ -5,7 +5,9 @@ import Modelo.Prestamo;
 import Modelo.Usuario;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class BibliotecaService {
     private static Biblioteca biblioteca;
@@ -103,7 +105,7 @@ public class BibliotecaService {
         while (true) {
             System.out.println("Ingrese el nombre de Usuario");
             nombre = scanner.nextLine();
-            if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            if (!nombre.matches("^[\\p{L} ]+$")) {
                 System.out.println("Error: El nombre solo puede contener letras y espacios. Intente de nuevo.");
             } else {
                 break;
@@ -129,5 +131,21 @@ public class BibliotecaService {
         prestamo.marcarDevuelto();
 
     }
+
+    public void listarLibrosPorGenero() {
+        System.out.println("Ingrese el genero a buscar");
+        String genero = scanner.nextLine();
+        List<Libro> librosFiltrados = biblioteca.getCatalogo().stream()
+                .filter(libro -> libro.getGenero().equalsIgnoreCase(genero))
+                .collect(Collectors.toList());
+
+        if(librosFiltrados.isEmpty()) {
+            System.out.println("No se encontraron libros para el género: " + genero);
+        } else {
+            System.out.println("Libros encontrados:");
+            librosFiltrados.forEach(libro -> System.out.println(libro));
+        }
+    }
+
 
 }
