@@ -26,8 +26,6 @@ public class Biblioteca {
         return instancia;
     }
 
-
-
     public void agregarLibro(Libro libro) {
         catalogo.add(libro);
     }
@@ -52,6 +50,9 @@ public class Biblioteca {
 
     public String getNombre() {
         return nombre;
+    }
+    public List<Libro> getCatalogo(){
+        return catalogo;
     }
 
     public void mostrarLibros(){
