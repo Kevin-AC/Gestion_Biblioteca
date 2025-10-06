@@ -1,6 +1,6 @@
-package Modelo;
+package Transacciones;
 
-public class MultaProgresiva implements CalcularMulta{
+public class MultaProgresiva implements CalcularMulta {
     @Override
     public double calcularMulta(int diasAtraso) {
         double multa = 0.0;
