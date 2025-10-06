@@ -10,7 +10,7 @@ public class Prestamo {
     private LocalDate fechaDevolucion;
     private boolean devuelto;
 
-    private static final int DURACION_PRESTAMO_DIAS = 14; // Duración del préstamo en días
+    private static final int DURACION_PRESTAMO_DIAS = 2; // Duración del préstamo sin multa
     public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo) {
         this.libro = libro;
         this.usuario = usuario;

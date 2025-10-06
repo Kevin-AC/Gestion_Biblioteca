@@ -14,7 +14,7 @@ public class BibliotecaService {
     private static Biblioteca biblioteca;
     private static Scanner scanner;
 
-    private CalcularMulta calcularMulta = new MultaFija();
+    private CalcularMulta calculadorMulta = new MultaFija();
 
     public BibliotecaService(Biblioteca biblioteca, Scanner scanner) {
         this.biblioteca = biblioteca;
@@ -149,7 +149,11 @@ public class BibliotecaService {
         }
         prestamo.setFechaDevolucion(prestamo.getFechaPrestamo().plusDays(diasRetraso));
         prestamo.marcarDevuelto();
+
         double multa = calcularMulta(prestamo);
+        System.out.println("Días de retraso ingresados: " + diasRetraso);
+        System.out.println("Objeto calcularMulta es de tipo: " + calculadorMulta.getClass().getSimpleName());
+
         System.out.println("Prestamo devuelto con exito");
         System.out.println("Multa a pagar: " + multa);
 
@@ -169,18 +173,16 @@ public class BibliotecaService {
             librosFiltrados.forEach(libro -> System.out.println(libro));
         }
     }
-
     public void setCalcularMulta(CalcularMulta calcularMulta) {
-        this.calcularMulta = calcularMulta;
+        this.calculadorMulta = calcularMulta;
     }
-    public double calcularMulta(int diasRetraso){
-        return calcularMulta.calcularMulta(diasRetraso);
+    public double calcularMulta(int diasRetraso) {
+        return calculadorMulta.calcularMulta(diasRetraso);
     }
-
     public double calcularMulta(Prestamo prestamo){
         long diasRetraso = prestamo.calcularDiasRetraso();
         return calcularMulta((int)diasRetraso);
-    }
+        }
     public void seleccionarMulta() {
         System.out.println("Seleccione el tipo de multa:");
         System.out.println("1. Multa fija");
@@ -206,7 +208,7 @@ public class BibliotecaService {
             default:
                 System.out.println("Opcion no valida.");
         }
-    }
+    }//menu seleccion de multa
 
 
 
