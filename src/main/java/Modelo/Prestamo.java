@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Prestamo {
     private Libro libro;
@@ -9,6 +10,7 @@ public class Prestamo {
     private LocalDate fechaDevolucion;
     private boolean devuelto;
 
+    private static final int DURACION_PRESTAMO_DIAS = 14; // Duración del préstamo en días
     public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo) {
         this.libro = libro;
         this.usuario = usuario;
@@ -34,19 +36,37 @@ public class Prestamo {
     }
     public void marcarDevuelto(){
         this.devuelto=true;
-        this.fechaDevolucion = LocalDate.now();
+        if (this.fechaDevolucion == null) {
+            this.fechaDevolucion = LocalDate.now();
+        }
     }
+    public long calcularDiasRetraso() {
+        if (!devuelto || fechaDevolucion == null) {
+            return 0;
+        }
+        long diasTranscurridos = ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion);
+        long diasRetraso = diasTranscurridos - DURACION_PRESTAMO_DIAS;
+        return diasRetraso > 0 ? diasRetraso : 0;
+    }
+    public void setFechaDevolucion(LocalDate fechaDevolucion){
+        this.fechaDevolucion = fechaDevolucion;
+    }
+
 
 
     @Override
     public String toString() {
-        return "Préstado:\n" +
+        long diasRetraso = calcularDiasRetraso();
+
+        return "Préstamo:\n" +
                 "  Libro: " + libro.getTitulo() + "\n" +
                 "  Usuario: " + usuario.getNombreCompleto() + "\n" +
                 "  Fecha de Préstamo: " + fechaPrestamo + "\n" +
                 "  Fecha de Devolución: " + (fechaDevolucion != null ? fechaDevolucion : "No devuelto aún") + "\n" +
-                "  Estado: " + (devuelto ? "Devuelto" : "En préstamo");
+                "  Estado: " + (devuelto ? "Devuelto" : "En préstamo") + "\n" +
+                "  Dias de retraso: " + diasRetraso + "\n";
     }
+
 
 
 
