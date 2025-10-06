@@ -49,7 +49,7 @@ public class Main {
         //usuarios de prueba
         biblioteca.agregarUsuario(new Usuario("Ana Martinez", "12345678", "ana@mail.com", "5551234"));
         biblioteca.agregarUsuario(new Usuario("Luis Gomez", "87654321", "luis@mail.com", "5554321"));
-        biblioteca.agregarUsuario(new Usuario("María Rodriguez", "23456789", "maria@mail.com", "5556789"));
+        biblioteca.agregarUsuario(new Usuario("Maria Rodriguez", "23456789", "maria@mail.com", "5556789"));
         biblioteca.agregarUsuario(new Usuario("Carlos Perez", "98765432", "carlos@mail.com", "5559876"));
         biblioteca.agregarUsuario(new Usuario("Lucía Sanchez", "34567890", "lucia@mail.com", "5553456"));
 
