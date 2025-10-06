@@ -1,10 +1,11 @@
 package Service;
-import Modelo.Biblioteca;
-import Modelo.Libro;
-import Modelo.Prestamo;
-import Modelo.Usuario;
+import Modelo.*;
+import Transacciones.CalcularMulta;
+import Transacciones.MultaFija;
+import Transacciones.MultaProgresiva;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 public class BibliotecaService {
     private static Biblioteca biblioteca;
     private static Scanner scanner;
+
+    private CalcularMulta calcularMulta = new MultaFija();
 
     public BibliotecaService(Biblioteca biblioteca, Scanner scanner) {
         this.biblioteca = biblioteca;
@@ -113,7 +116,7 @@ public class BibliotecaService {
         }
         return nombre;
     }
-    public static void devolverLibro(){
+    public  void devolverLibro(){
         String nombre = validarNombre();
         Usuario usuario = biblioteca.buscarUsuarioPorNombre(nombre).stream().findFirst().orElse(null);
         if(usuario == null) {
@@ -127,11 +130,31 @@ public class BibliotecaService {
             System.out.println("Prestamo no encontrado");
             return;
         }
-        System.out.println("Prestamo devuelto con exito");
+        // seleccionar multa
+        seleccionarMulta();
+        //simular retraso de 15 dias
+        System.out.println("Ingrese los dias de retraso en la devolucion");
+        int diasRetraso;
+        try {
+            diasRetraso = scanner.nextInt();
+            scanner.nextLine(); // limpiar buffer
+            if (diasRetraso < 0) {
+                System.out.println("El número de días no puede ser negativo.");
+                return;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Debe ingresar un número entero válido.");
+            scanner.nextLine(); // limpiar buffer
+            return;
+        }
+        prestamo.setFechaDevolucion(prestamo.getFechaPrestamo().plusDays(diasRetraso));
         prestamo.marcarDevuelto();
+        double multa = calcularMulta(prestamo);
+        System.out.println("Prestamo devuelto con exito");
+        System.out.println("Multa a pagar: " + multa);
+
 
     }
-
     public void listarLibrosPorGenero() {
         System.out.println("Ingrese el genero a buscar");
         String genero = scanner.nextLine();
@@ -146,6 +169,47 @@ public class BibliotecaService {
             librosFiltrados.forEach(libro -> System.out.println(libro));
         }
     }
+
+    public void setCalcularMulta(CalcularMulta calcularMulta) {
+        this.calcularMulta = calcularMulta;
+    }
+    public double calcularMulta(int diasRetraso){
+        return calcularMulta.calcularMulta(diasRetraso);
+    }
+
+    public double calcularMulta(Prestamo prestamo){
+        long diasRetraso = prestamo.calcularDiasRetraso();
+        return calcularMulta((int)diasRetraso);
+    }
+    public void seleccionarMulta() {
+        System.out.println("Seleccione el tipo de multa:");
+        System.out.println("1. Multa fija");
+        System.out.println("2. Multa progresiva");
+        int seleccion = 0;
+        try {
+            seleccion = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Opcion no valida.");
+            scanner.nextLine();
+            return;
+        }
+        switch (seleccion) {
+            case 1:
+                setCalcularMulta(new MultaFija());
+                System.out.println("Multa fija seleccionada.");
+                break;
+            case 2:
+                setCalcularMulta(new MultaProgresiva());
+                System.out.println("Multa progresiva seleccionada.");
+                break;
+            default:
+                System.out.println("Opcion no valida.");
+        }
+    }
+
+
+
 
 
 }
