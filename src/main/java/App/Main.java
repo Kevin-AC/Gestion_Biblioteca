@@ -72,7 +72,7 @@ public class Main {
                 service.crearUsuario();
                 break;
             case 2:
-                service.crearLibro();
+                service.MenuCrearLibro();
                 break;
             case 3:
                 service.prestarLibro();

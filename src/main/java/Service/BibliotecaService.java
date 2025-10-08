@@ -59,7 +59,7 @@ public class BibliotecaService {
 
     }
 
-    public static void crearLibro(){
+    public static void MenuCrearLibro(){
         System.out.println("Seleccione el tipo de libro a crear:");
         System.out.println("1. Libro Fisico");
         System.out.println("2. Libro Electronico");
@@ -70,24 +70,17 @@ public class BibliotecaService {
             switch (seleccion) {
                 case 1:
                     System.out.println("Creando Libro Fisico");
-                    crearLibroFisico();
+                    DatosLibro datosLibro = datosComunesLibro();
+                    Libro libroFisico = new Libro(datosLibro.titulo, datosLibro.autor, datosLibro.isbn, datosLibro.editorial, datosLibro.anioPublicacion, datosLibro.genero);
+                    biblioteca.agregarLibro(libroFisico);
+                    System.out.println("Libro creado con exito");
                     break;
                 case 2:
                     System.out.println("Creando Libro Electronico");
-                    System.out.println("Ingrese el titulo del libro");
-                    String titulo = scanner.nextLine();
-                    System.out.println("Ingrese el autor del libro");
-                    String autor = scanner.nextLine();
-                    System.out.println("Ingrese el isbn del libro");
-                    String isbn = scanner.nextLine();
-                    System.out.println("Ingrese la editorial del libro");
-                    String editorial = scanner.nextLine();
-                    System.out.println("Ingrese el año de publicacion del libro");
-                    String anioPublicacion = scanner.nextLine();
-                    System.out.println("Ingrese el genero del libro");
-                    String genero = scanner.nextLine();
+                    DatosLibro datosLibroE = datosComunesLibro();
                     System.out.println("Ingrese el formato del libro (e.g., PDF, EPUB)");
                     String formato = scanner.nextLine();
+
                     double tamanoMB;
                     while (true) {
                         System.out.println("Ingrese el tamaño del archivo en MB");
@@ -104,7 +97,18 @@ public class BibliotecaService {
                     }
                     System.out.println("Ingrese la URL de descarga del libro");
                     String urlDescarga = scanner.nextLine();
-                    LibroElectronico libroElectronico = new LibroElectronico(titulo, autor, isbn, editorial, anioPublicacion, genero, formato, tamanoMB, urlDescarga);
+                    // Crear objeto LibroElectronico
+                    LibroElectronico libroElectronico = new LibroElectronico(
+                            datosLibroE.titulo,
+                            datosLibroE.autor,
+                            datosLibroE.isbn,
+                            datosLibroE.editorial,
+                            datosLibroE.anioPublicacion,
+                            datosLibroE.genero,
+                            formato,
+                            tamanoMB,
+                            urlDescarga
+                    );
                     biblioteca.agregarLibro(libroElectronico);
                     System.out.println("Libro Electronico creado con exito");
                     break;
@@ -120,7 +124,7 @@ public class BibliotecaService {
         }
 
     }
-    public  static  void crearLibroFisico(){
+    public  static DatosLibro datosComunesLibro(){
         System.out.println("Ingrese el Titulo del Libro");
         String titulo = scanner.nextLine();
         System.out.println("Ingrese el Autor del Libro");
@@ -133,10 +137,12 @@ public class BibliotecaService {
         String anioPublicacion = scanner.nextLine();
         System.out.println("Ingrese el Genero");
         String genero = scanner.nextLine();
-        Libro libro = new Libro(titulo,autor,isbn,editorial,anioPublicacion,genero);
-        biblioteca.agregarLibro(libro);
-        System.out.println("Libro creado con exito");
+        return new DatosLibro(titulo,autor,isbn,editorial,anioPublicacion,genero);
+
     }
+    /*
+    *
+    * */
 
     public static void prestarLibro() {
         System.out.println("Ingrese el Titulo del Libro a Prestar");
