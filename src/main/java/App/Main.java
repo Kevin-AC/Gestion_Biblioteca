@@ -78,7 +78,7 @@ public class Main {
                 service.prestarLibro();
                 break;
             case 4:
-                biblioteca.mostrarLibros();
+                service.mostrarLibros();
                 break;
             case 5:
                 service.devolverLibro();

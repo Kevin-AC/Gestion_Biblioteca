@@ -173,6 +173,18 @@ public class BibliotecaService {
             librosFiltrados.forEach(libro -> System.out.println(libro));
         }
     }
+    public void mostrarLibros(){
+        List<Libro> catalogo = biblioteca.getCatalogo();
+        if (catalogo.isEmpty()){
+            System.out.println("No hay libros disponibles");
+        }else {
+            System.out.println("\nLista de libros");
+            for(int i = 0; i < catalogo.size(); i++){
+                System.out.println((i+1)+ "."+catalogo.get(i));
+            }
+        }
+
+    }
     public void setCalcularMulta(CalcularMulta calcularMulta) {
         this.calculadorMulta = calcularMulta;
     }
