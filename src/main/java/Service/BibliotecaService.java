@@ -58,7 +58,69 @@ public class BibliotecaService {
         }
 
     }
+
     public static void crearLibro(){
+        System.out.println("Seleccione el tipo de libro a crear:");
+        System.out.println("1. Libro Fisico");
+        System.out.println("2. Libro Electronico");
+        int seleccion = 0;
+        try {
+            seleccion = scanner.nextInt();
+            scanner.nextLine();
+            switch (seleccion) {
+                case 1:
+                    System.out.println("Creando Libro Fisico");
+                    crearLibroFisico();
+                    break;
+                case 2:
+                    System.out.println("Creando Libro Electronico");
+                    System.out.println("Ingrese el titulo del libro");
+                    String titulo = scanner.nextLine();
+                    System.out.println("Ingrese el autor del libro");
+                    String autor = scanner.nextLine();
+                    System.out.println("Ingrese el isbn del libro");
+                    String isbn = scanner.nextLine();
+                    System.out.println("Ingrese la editorial del libro");
+                    String editorial = scanner.nextLine();
+                    System.out.println("Ingrese el año de publicacion del libro");
+                    String anioPublicacion = scanner.nextLine();
+                    System.out.println("Ingrese el genero del libro");
+                    String genero = scanner.nextLine();
+                    System.out.println("Ingrese el formato del libro (e.g., PDF, EPUB)");
+                    String formato = scanner.nextLine();
+                    double tamanoMB;
+                    while (true) {
+                        System.out.println("Ingrese el tamaño del archivo en MB");
+                        try {
+                            tamanoMB = Double.parseDouble(scanner.nextLine());
+                            if (tamanoMB <= 0) {
+                                System.out.println("Error: El tamaño debe ser un número positivo. Intente de nuevo.");
+                            } else {
+                                break;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: Debe ingresar un número válido para el tamaño. Intente de nuevo.");
+                        }
+                    }
+                    System.out.println("Ingrese la URL de descarga del libro");
+                    String urlDescarga = scanner.nextLine();
+                    LibroElectronico libroElectronico = new LibroElectronico(titulo, autor, isbn, editorial, anioPublicacion, genero, formato, tamanoMB, urlDescarga);
+                    biblioteca.agregarLibro(libroElectronico);
+                    System.out.println("Libro Electronico creado con exito");
+                    break;
+                default:
+                    System.out.println("Opcion no valida.");
+
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Opcion no valida.");
+            scanner.nextLine();
+            return;
+        }
+
+    }
+    public  static  void crearLibroFisico(){
         System.out.println("Ingrese el Titulo del Libro");
         String titulo = scanner.nextLine();
         System.out.println("Ingrese el Autor del Libro");
@@ -75,6 +137,7 @@ public class BibliotecaService {
         biblioteca.agregarLibro(libro);
         System.out.println("Libro creado con exito");
     }
+
     public static void prestarLibro() {
         System.out.println("Ingrese el Titulo del Libro a Prestar");
         String titulo = scanner.nextLine();

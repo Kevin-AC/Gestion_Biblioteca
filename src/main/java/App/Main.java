@@ -37,11 +37,11 @@ public class Main {
         System.out.println("9. salir");
     }
     public static void datosDeprueba(){
+        biblioteca.agregarLibro(new LibroElectronico("Java para principiantes", "John Doe", "123456789", "TechPress", "2020", "Educativo", "PDF", 3.8, "http://bibliotecacentral/libroselectronicos/java"));
         biblioteca.agregarLibro(new Libro("Cien años de soledad", "Gabriel García Márquez", "9780060883287", "Sudamericana", "1967", "Realismo magico"));
         biblioteca.agregarLibro(new Libro("El codigo Da Vinci", "Dan Brown", "9780307474278", "Doubleday", "2003", "Thriller"));
         biblioteca.agregarLibro(new Libro("El principito", "Antoine de Saint-Exupéry", "9780156012195", "Reynal & Hitchcock", "1943", "Fantasía"));
         biblioteca.agregarLibro(new Libro("1984", "George Orwell", "9780451524935", "Secker & Warburg", "1949", "Distopia"));
-        biblioteca.agregarLibro(new LibroElectronico("Java para principiantes", "John Doe", "123456789", "TechPress", "2020", "Educativo", "PDF", 3.8, "http://bibliotecacentral/libroselectronicos/java"));
         biblioteca.agregarLibro(new Libro("La saga de Geralt de Rivia", "Andrzej Sapkowski", "9788496206250", "Plaza & Janés", "1993", "Fantasia"));
         biblioteca.agregarLibro(new Libro("El nombre del viento", "Patrick Rothfuss", "9788408150837", "Plaza & Janés", "2007", "Fantasia"));
         biblioteca.agregarLibro(new Libro("Orgullo y prejuicio", "Jane Austen", "9788491056464", "Debolsillo", "1813", "Novela"));
