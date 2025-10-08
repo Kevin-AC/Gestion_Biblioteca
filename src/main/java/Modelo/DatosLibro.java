@@ -1,14 +1,12 @@
-package Service;
-
-import java.util.stream.Stream;
+package Modelo;
 
 public class DatosLibro {
-    String titulo;
-    String autor;
-    String isbn;
-    String editorial;
-    String anioPublicacion;
-    String genero;
+    public String titulo;
+    public String autor;
+    public String isbn;
+    public String editorial;
+    public String anioPublicacion;
+    public String genero;
 
     public DatosLibro(String titulo, String autor, String isbn, String editorial, String anioPublicacion,String genero){
         this.titulo = titulo;

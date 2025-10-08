@@ -140,9 +140,6 @@ public class BibliotecaService {
         return new DatosLibro(titulo,autor,isbn,editorial,anioPublicacion,genero);
 
     }
-    /*
-    *
-    * */
 
     public static void prestarLibro() {
         System.out.println("Ingrese el Titulo del Libro a Prestar");
