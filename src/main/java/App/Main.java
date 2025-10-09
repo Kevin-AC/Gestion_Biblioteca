@@ -84,7 +84,7 @@ public class Main {
                 usuarioService.crearUsuario();
                 break;
             case 2:
-                service.MenuCrearLibro();
+                libroService.MenuCrearLibro();
                 break;
             case 3:
                 prestamoService.prestarLibro();
