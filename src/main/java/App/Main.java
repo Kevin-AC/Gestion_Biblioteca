@@ -5,15 +5,27 @@ import Modelo.Libro;
 import Modelo.LibroElectronico;
 import Modelo.Usuario;
 import Service.BibliotecaService;
+import Service.LibroService;
+import Service.PrestamoService;
+import Service.UsuarioService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Biblioteca biblioteca;
     static BibliotecaService service;
+    static PrestamoService prestamoService;
+    static LibroService libroService;
+    static UsuarioService usuarioService;
+
     public static void main(String[] args) {
         biblioteca = Biblioteca.getInstance("Biblioteca Central");
         service = new BibliotecaService(biblioteca, scanner);
+        usuarioService = new UsuarioService(scanner, biblioteca);
+        prestamoService = new PrestamoService(biblioteca, scanner, usuarioService);
+        libroService = new LibroService(scanner, biblioteca);
+        //datos de prueba
         datosDeprueba();
 
         int opcion =0;
@@ -69,25 +81,25 @@ public class Main {
     public static void ejecutarOpciones(int opcion){
         switch (opcion){
             case 1:
-                service.crearUsuario();
+                usuarioService.crearUsuario();
                 break;
             case 2:
                 service.MenuCrearLibro();
                 break;
             case 3:
-                service.prestarLibro();
+                prestamoService.prestarLibro();
                 break;
             case 4:
-                service.mostrarLibros();
+                libroService.mostrarLibros();
                 break;
             case 5:
-                service.devolverLibro();
+                prestamoService.devolverLibro();
                 break;
             case 6:
-                service.listarPrestamos();
+                prestamoService.listarPrestamos();
                 break;
             case  7:
-                service.listarLibrosPorGenero();
+                libroService.listarLibrosPorGenero();
                 break;
             case 9:
                 System.out.println("Saliendo...");
