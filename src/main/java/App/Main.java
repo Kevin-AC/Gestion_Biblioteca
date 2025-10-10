@@ -1,5 +1,6 @@
 package App;
 
+import Conexion.ConexionSQLServer;
 import Modelo.Biblioteca;
 import Modelo.Libro;
 import Modelo.LibroElectronico;
@@ -9,6 +10,7 @@ import Service.LibroService;
 import Service.PrestamoService;
 import Service.UsuarioService;
 
+import java.sql.Connection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
@@ -26,7 +28,9 @@ public class Main {
         prestamoService = new PrestamoService(biblioteca, scanner, usuarioService);
         libroService = new LibroService(scanner, biblioteca);
         //datos de prueba
+        testSqlConection();
         datosDeprueba();
+
 
         int opcion =0;
         while (opcion != 9){
@@ -108,5 +112,19 @@ public class Main {
                 System.out.println("Opcion no valida");
         }
 
+    }
+
+    public static void testSqlConection(){
+        Connection conn = ConexionSQLServer.conectar();
+        if (conn != null) {
+            System.out.println("Conexión exitosa con SQL Server");
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No se pudo conectar a SQL Server");
+        }
     }
 }
