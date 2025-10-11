@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
 
 public class LibroService {
@@ -56,9 +57,10 @@ public class LibroService {
     }
     public void MenuCrearLibro(){
 
-        System.out.println("Seleccione el tipo de libro a crear:");
-        System.out.println("1. Libro Fisico");
-        System.out.println("2. Libro Electronico");
+        System.out.println("Seleccione La Operacion a realizar:");
+        System.out.println("1. Crear Libro Fisico");
+        System.out.println("2. Crear Libro Electronico");
+        System.out.println("3. Eliminar Libro por ISBN");
         int seleccion = 0;
         try {
             LibroDAO dao = new LibroDAO();
@@ -111,6 +113,9 @@ public class LibroService {
                     dao.agregarLibro(libroElectronico);
                     System.out.println("Libro Electronico creado con exito");
                     break;
+                case 3:
+                    eliminarLibro();
+                    break;
                 default:
                     System.out.println("Opcion no valida.");
 
@@ -139,6 +144,18 @@ public class LibroService {
         System.out.println("Ingrese el Genero");
         String genero = scanner.nextLine();
         return new DatosLibro(titulo,autor,isbn,editorial,anioPublicacion,genero);
+
+    }
+
+    public void eliminarLibro(){
+        System.out.println("Ingrese el ISBN del libro a eliminar:");
+        String isbn = scanner.nextLine();
+        try{
+            LibroDAO dao = new LibroDAO();
+            dao.eliminarLibro(isbn);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

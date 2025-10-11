@@ -45,7 +45,7 @@ public class Main {
     public static void mostrarMenu(){
         System.out.println("Bienvenido a la biblioteca "+ biblioteca.getNombre());
         System.out.println("1. Crear usuario");
-        System.out.println("2. Crear libro");
+        System.out.println("2. Crear/Eliminar libro");
         System.out.println("3. Prestar libro");
         System.out.println("4. Lista de libros");
         System.out.println("5. Devolver libro");

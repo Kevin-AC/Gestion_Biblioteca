@@ -59,5 +59,18 @@ public class LibroDAO {
         }
     }
 
+    public void eliminarLibro(String isbn)throws  SQLException{
+        String sql = "DELETE FROM Libros WHERE isbn = ?";
+        try(PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setString(1,isbn);
+            int filasEliminadas = stmt.executeUpdate();
+            if(filasEliminadas >0 ){
+                System.out.println("Libro Eliminado correctamente");
+            }else {
+                System.out.println("No se encontro el libro con el ISBN proporcionado");
+            }
+        }
+    }
+
 
 }
