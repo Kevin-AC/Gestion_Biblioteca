@@ -1,10 +1,12 @@
 package Service;
 
+import DAO.LibroDAO;
 import Modelo.Biblioteca;
 import Modelo.DatosLibro;
 import Modelo.Libro;
 import Modelo.LibroElectronico;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -46,11 +48,13 @@ public class LibroService {
 
     }
     public void MenuCrearLibro(){
+
         System.out.println("Seleccione el tipo de libro a crear:");
         System.out.println("1. Libro Fisico");
         System.out.println("2. Libro Electronico");
         int seleccion = 0;
         try {
+            LibroDAO dao = new LibroDAO();
             seleccion = scanner.nextInt();
             scanner.nextLine();
             switch (seleccion) {
@@ -58,6 +62,7 @@ public class LibroService {
                     System.out.println("Creando Libro Fisico");
                     DatosLibro datosLibro = datosComunesLibro();
                     Libro libroFisico = new Libro(datosLibro.titulo, datosLibro.autor, datosLibro.isbn, datosLibro.editorial, datosLibro.anioPublicacion, datosLibro.genero);
+                    dao.agregarLibro(libroFisico);
                     biblioteca.agregarLibro(libroFisico);
                     System.out.println("Libro creado con exito");
                     break;
@@ -107,6 +112,8 @@ public class LibroService {
             System.out.println("Opcion no valida.");
             scanner.nextLine();
             return;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }

@@ -1,6 +1,7 @@
 package App;
 
 import Conexion.ConexionSQLServer;
+import DAO.LibroDAO;
 import Modelo.Biblioteca;
 import Modelo.Libro;
 import Modelo.LibroElectronico;
@@ -11,6 +12,7 @@ import Service.PrestamoService;
 import Service.UsuarioService;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
@@ -29,7 +31,10 @@ public class Main {
         libroService = new LibroService(scanner, biblioteca);
         //datos de prueba
         testSqlConection();
+        //testAgregarLibro();
         datosDeprueba();
+
+
 
 
         int opcion =0;
@@ -125,6 +130,19 @@ public class Main {
             }
         } else {
             System.out.println("No se pudo conectar a SQL Server");
+        }
+    }
+
+    public static void testAgregarLibro(){
+        try {
+            LibroDAO dao = new LibroDAO();
+            Libro libroFisico =  new Libro(
+                    "El principito", "Antoine de Saint-Exupéry", "9780156012195",
+                    "Reynal & Hitchcock", "1943", "Fantasía");
+            dao.agregarLibro(libroFisico);
+            System.out.println("Libro fisico agregado exitosamente");
+        }catch (SQLException e){
+            e.printStackTrace();
         }
     }
 }
