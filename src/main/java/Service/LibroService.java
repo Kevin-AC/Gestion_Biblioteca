@@ -36,6 +36,13 @@ public class LibroService {
         }
     }
     public void mostrarLibros(){
+        try {
+            LibroDAO dao = new LibroDAO();
+            dao.mostrarLibros();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+/*
         List<Libro> catalogo = biblioteca.getCatalogo();
         if (catalogo.isEmpty()){
             System.out.println("No hay libros disponibles");
@@ -45,7 +52,7 @@ public class LibroService {
                 System.out.println((i+1)+ "."+catalogo.get(i));
             }
         }
-
+*/
     }
     public void MenuCrearLibro(){
 

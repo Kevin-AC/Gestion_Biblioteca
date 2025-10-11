@@ -3,9 +3,8 @@ package DAO;
 import Conexion.ConexionSQLServer;
 import Modelo.Libro;
 import Modelo.LibroElectronico;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class LibroDAO {
     private Connection connection;
@@ -37,6 +36,26 @@ public class LibroDAO {
             }
 
             stmt.executeUpdate();
+        }
+    }
+
+    public void mostrarLibros() throws SQLException{
+        String sql = "SELECT * FROM Libros";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+            while (rs.next()){
+                Libro libro = new Libro(
+                        rs.getString("titulo"),
+                        rs.getString("autor"),
+                        rs.getString("isbn"),
+                        rs.getString("editorial"),
+                        rs.getString("anioPublicacion"),
+                        rs.getString("genero")
+
+                );
+                System.out.println(libro.toString());
+
+            }
         }
     }
 
