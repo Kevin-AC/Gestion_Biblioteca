@@ -33,10 +33,6 @@ public class Main {
         testSqlConection();
         //testAgregarLibro();
         datosDeprueba();
-
-
-
-
         int opcion =0;
         while (opcion != 9){
             mostrarMenu();

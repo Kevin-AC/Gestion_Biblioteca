@@ -100,7 +100,8 @@ public class LibroService {
                             tamanoMB,
                             urlDescarga
                     );
-                    biblioteca.agregarLibro(libroElectronico);
+                    //biblioteca.agregarLibro(libroElectronico);
+                    dao.agregarLibro(libroElectronico);
                     System.out.println("Libro Electronico creado con exito");
                     break;
                 default:
