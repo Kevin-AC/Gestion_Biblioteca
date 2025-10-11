@@ -8,7 +8,7 @@ public class ConexionSQLServer {
     public static Connection conectar() {
         String url = "jdbc:sqlserver://localhost:1433;databaseName=Biblioteca;encrypt=true;trustServerCertificate=true";
         String usuario = "sa";
-        String contrasena = "Plateada12.-";  // Cambia por tu contraseña real
+        String contrasena = "Sqldocker2022";  // Cambia por tu contraseña real
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, usuario, contrasena);
