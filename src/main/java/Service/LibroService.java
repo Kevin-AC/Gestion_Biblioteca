@@ -1,11 +1,13 @@
 package Service;
 
+import Conexion.ConexionSQLServer;
 import DAO.LibroDAO;
 import Modelo.Biblioteca;
 import Modelo.DatosLibro;
 import Modelo.Libro;
 import Modelo.LibroElectronico;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -61,6 +63,8 @@ public class LibroService {
         System.out.println("1. Crear Libro Fisico");
         System.out.println("2. Crear Libro Electronico");
         System.out.println("3. Eliminar Libro por ISBN");
+        System.out.println("4. Modificar Datos del Libro");
+
         int seleccion = 0;
         try {
             LibroDAO dao = new LibroDAO();
@@ -116,6 +120,9 @@ public class LibroService {
                 case 3:
                     eliminarLibro();
                     break;
+                case 4:
+                    modificarLibro();
+                    break;
                 default:
                     System.out.println("Opcion no valida.");
 
@@ -158,4 +165,29 @@ public class LibroService {
         }
 
     }
+
+    public void modificarLibro(){
+        System.out.println("Ingrese los nuevos datos del libro a modificar:");
+        System.out.println("Titulo:");
+        String titulo = scanner.nextLine();
+        System.out.println("Autor:");
+        String autor = scanner.nextLine();
+        System.out.println("ISBN (del libro a modificar):");
+        String isbn = scanner.nextLine();
+        System.out.println("Editorial:");
+        String editorial = scanner.nextLine();
+        System.out.println("Año de Publicacion:");
+        String anioPublicacion = scanner.nextLine();
+        System.out.println("Genero:");
+        String genero = scanner.nextLine();
+        System.out.println("Modificando libro...");
+        Libro libroModificado = new Libro(titulo,autor,isbn,editorial,anioPublicacion,genero);
+        try {
+            LibroDAO dao =new LibroDAO();
+            dao.modificarLibro(libroModificado);
+        }catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
 }

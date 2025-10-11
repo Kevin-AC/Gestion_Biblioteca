@@ -71,6 +71,23 @@ public class LibroDAO {
             }
         }
     }
+    public void modificarLibro(Libro libro)throws SQLException{
+        String sql = "UPDATE Libros SET titulo = ?, autor = ?, editorial = ?, anioPublicacion = ?, genero = ? WHERE isbn = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setString(1, libro.getTitulo());
+            stmt.setString(2, libro.getAutor());
+            stmt.setString(3, libro.getEditorial());
+            stmt.setString(4, libro.getAnioPublicacion());
+            stmt.setString(5, libro.getGenero());
+            stmt.setString(6, libro.getIsbn());
+            int filasActualizadas = stmt.executeUpdate();
+            if(filasActualizadas > 0){
+                System.out.println("Libro actualizado correctamente");
+            }else{
+                System.out.println("No se encontro el libro con el ISBN proporcionado");
+            }
+        }
+    }
 
 
 }
